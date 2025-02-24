@@ -12,9 +12,6 @@
  * limitations under the License.
  */
 
-import java.nio.file.Files
-import java.nio.file.Paths
-
 plugins {
     id "com.github.hierynomus.license" version "0.16.1"
     id 'signing'
@@ -116,7 +113,7 @@ ext.tempto_runner = project(':tempto-runner')
 ext.tempto_ldap = project(':tempto-ldap')
 ext.tempto_kafka = project(':tempto-kafka')
 ext.expected_result_generator = project(':expected-result-generator')
-ext.tempto_version = '1.55-SNAPSHOT'
+ext.tempto_version = '1.54-SNAPSHOT'
 ext.tempto_group = "io.prestodb.tempto"
 
 ext.nexusUsername = 'setup_nexusUsername_in_gradle.properties'
@@ -154,18 +151,8 @@ configure(subprojects - expected_result_generator - tempto_examples) {
     }
 
     signing {
-        def skipSigning = project.findProperty('skipSigning')?.toBoolean() != false
-        if (!skipSigning) {
-            def secretKeyRingFilePath = project.findProperty("signing.secretKeyRingFile")?.with { it.isEmpty()? null : it }
-            def signingKeyId = project.findProperty("signing.keyId")?.with { it.isEmpty() ? null : it }
-            def signingPassword = project.findProperty("signing.password")?.with { it.isEmpty()? null : it }
-            def keyFile = secretKeyRingFilePath ? Paths.get(secretKeyRingFilePath) : null
-            if (keyFile && Files.exists(keyFile) && !Files.isDirectory(keyFile)) {
-                def secretKey = new String(Files.readAllBytes(keyFile), "UTF-8")
-                useInMemoryPgpKeys(signingKeyId, secretKey, signingPassword)
-            }
-        }
         sign publishing.publications
+        useGpgCmd() //Use system provide GPG
     }
 
     // publishing to sonatype
