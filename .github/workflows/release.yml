@@ -121,7 +121,9 @@ jobs:
           export NEXUS_USERNAME="${{ secrets.NEXUS_USERNAME }}"
           export NEXUS_PASSWORD="${{ secrets.NEXUS_PASSWORD }}"
           ./gradlew sign publish
-      
+        env:
+          GPG_TTY: $(tty)
+
       - name: Update release version in build.gradle
         run: |
           # Update the version in build.gradle
