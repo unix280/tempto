@@ -40,22 +40,9 @@ jobs:
           git config --global user.name "prestodb-ci"
           git config pull.rebase false
 
-      - name: Set up GPG key
-        run: |
-          echo "${{ secrets.GPG_SECRET }}" > ${{ github.workspace }}/secret-key.gpg
-          chmod 600 ${{ github.workspace }}/secret-key.gpg
-
-      - name: Set up gradle.properties for publishing
-        run: |
-          echo "skipSigning=false" > gradle.properties
-          # echo "signing.keyId=${{ secrets.GPG_KEYID }}" >> gradle.properties
-          echo "signing.password=${{ secrets.GPG_PASSPHRASE }}" >> gradle.properties
-          echo "signing.secretKeyRingFile=${{ github.workspace }}/secret-key.gpg" >> gradle.properties
-          echo "nexusUsername=${{ secrets.NEXUS_USERNAME }}" >> gradle.properties
-          echo "nexusPassword=${{ secrets.NEXUS_PASSWORD }}" >> gradle.properties
-          
       - name: Run gradle build
         run: |
+          echo "skipSigning=false" > gradle.properties
           ./gradlew build
 
       - name: Get release version
@@ -106,6 +93,20 @@ jobs:
       - name: Add release tag
         run: |
           git tag -a ${{ env.release_version }} -m "Release ${{ env.release_version }}"
+
+      - name: Set up GPG key
+        run: |
+          echo "${{ secrets.GPG_SECRET }}" > ${{ github.workspace }}/secret-key.gpg
+          chmod 600 ${{ github.workspace }}/secret-key.gpg
+
+      - name: Set up gradle.properties for publishing
+        run: |
+          echo "skipSigning=false" > gradle.properties
+          echo "signing.keyId=${{ secrets.GPG_KEYID }}" >> gradle.properties
+          echo "signing.password=${{ secrets.GPG_PASSPHRASE }}" >> gradle.properties
+          echo "signing.secretKeyRingFile=${{ github.workspace }}/secret-key.gpg" >> gradle.properties
+          echo "nexusUsername=${{ secrets.NEXUS_USERNAME }}" >> gradle.properties
+          echo "nexusPassword=${{ secrets.NEXUS_PASSWORD }}" >> gradle.properties
 
       - name: Sign and publish release
         run: |
