@@ -152,7 +152,6 @@ configure(subprojects - expected_result_generator - tempto_examples) {
 
     signing {
         sign publishing.publications
-        useGpgCmd() //Use system provide GPG
     }
 
     // publishing to sonatype
@@ -194,7 +193,7 @@ configure(subprojects - expected_result_generator - tempto_examples) {
 
         repositories {
             maven {
-                url = uri('https://oss.sonatype.org/service/local/staging/deploy/maven2/')
+                url = uri('https://m2.unidevel.cn/release')
                 credentials {
                     username = System.getenv('NEXUS_USERNAME')
                     password = System.getenv('NEXUS_PASSWORD')
