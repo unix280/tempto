@@ -1,5 +1,14 @@
 ## Changelog for 1.54
 
+- [a204767](https://github.com/unix280/tempto/commit/a204767d2cf60a1f42edec736f14d276fbb44785) Update build.gradle
+- [578da76](https://github.com/unix280/tempto/commit/578da76c878e00dfdb662dc8780864e5092dcc92) Update build.gradle
+- [5a0b4b9](https://github.com/unix280/tempto/commit/5a0b4b9766c6742a6dd4fc4f836288bb450f2dcb) Update build.gradle
+- [dd64baf](https://github.com/unix280/tempto/commit/dd64bafee311b9e3a8c97b44ad79555bc074c18f) Update build.gradle
+- [1918c8c](https://github.com/unix280/tempto/commit/1918c8c2f1c4d3e94964806dc01b0f3fb9582af1) Update build.gradle
+- [a1be2a7](https://github.com/unix280/tempto/commit/a1be2a7dcb8e395fb79fe061895b922dbd494ad3) Update build.gradle
+- [fe04435](https://github.com/unix280/tempto/commit/fe0443513a355e7e112a66b7762464cba3df32c1) Update release.yml
+- [acb639c](https://github.com/unix280/tempto/commit/acb639cfa2253bc113caeea1af28d2f015251a53) Update build.gradle
+- [7cd33bd](https://github.com/unix280/tempto/commit/7cd33bd87d696079f62e0d9e067c7ac357e55843) Update CHANGELOG.md and build.gradle for version 1.54
 - [f4a9ffa](https://github.com/unix280/tempto/commit/f4a9ffa5013c34d1508d01944ad60871b7d70cdc) Update build.gradle
 - [bfad48a](https://github.com/unix280/tempto/commit/bfad48aca76a89a650f74e0cd7c6c2d450d30350) Update release.yml
 - [4493ba7](https://github.com/unix280/tempto/commit/4493ba7226a72db7a8a64170e4c13c881b7deaed) Update release.yml
