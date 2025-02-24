@@ -103,6 +103,7 @@ jobs:
           rm -f ${{ github.workspace }}/secret-key.gpg
           gpg --list-secret-keys
           echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
+          gpg --export-secret-keys > ${{ github.workspace }}/secret-key.gpg
         env:
           GPG_TTY: $(tty)
 
