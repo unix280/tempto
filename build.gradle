@@ -11,6 +11,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import java.nio.file.Files
+import java.nio.file.Paths
 
 plugins {
     id "com.github.hierynomus.license" version "0.16.1"
@@ -150,9 +152,14 @@ configure(subprojects - expected_result_generator - tempto_examples) {
         withSourcesJar()
     }
 
+    def secretKeyRingFilePath = project.findProperty("signing.secretKeyRingFile") as String
+    def secretKey = new String(Files.readAllBytes(Paths.get(secretKeyRingFilePath)), "UTF-8")
+    def signingKeyId = project.findProperty("signing.keyId")
+    def signingPassword = project.findProperty("signing.password")
+
     signing {
+        useInMemoryPgpKeys(signingKeyId, secretKey, signingPassword)
         sign publishing.publications
-        useGpgCmd() //Use system provide GPG
     }
 
     // publishing to sonatype
