@@ -1,0 +1,29 @@
+## Changelog for 1.54
+
+- [f4a9ffa](https://github.com/unix280/tempto/commit/f4a9ffa5013c34d1508d01944ad60871b7d70cdc) Update build.gradle
+- [bfad48a](https://github.com/unix280/tempto/commit/bfad48aca76a89a650f74e0cd7c6c2d450d30350) Update release.yml
+- [4493ba7](https://github.com/unix280/tempto/commit/4493ba7226a72db7a8a64170e4c13c881b7deaed) Update release.yml
+- [86973ea](https://github.com/unix280/tempto/commit/86973ea00c575988e39789ef7d70ee69a42c6ea5) Update release.yml
+- [8ac7055](https://github.com/unix280/tempto/commit/8ac7055a730af14803a339285fe4773589d23f02) Update build.gradle
+- [9bdcb81](https://github.com/unix280/tempto/commit/9bdcb81d09cec3e637146adedf61d16950a74462) Update release.yml
+- [fb4f91b](https://github.com/unix280/tempto/commit/fb4f91b0c5a46b183df472320c40d9f477cc8731) Update release.yml
+- [2d77aa9](https://github.com/unix280/tempto/commit/2d77aa93b8dc7fa505474761d49caa2074422e2d) Update release.yml
+- [2b4b137](https://github.com/unix280/tempto/commit/2b4b137cd166edb8fa409b7c6a269cd9c4947e2f) Update release.yml
+- [eac1380](https://github.com/unix280/tempto/commit/eac1380004adf3df72ae661fbee14a8e9ef0a742) Update build.gradle
+- [d85ce1b](https://github.com/unix280/tempto/commit/d85ce1b2620613bd58f1662e25e3715b2b97c63d) Update release.yml
+- [d21883c](https://github.com/unix280/tempto/commit/d21883c02f9c27c691b10f15db3c05f619dd80a8) Update release.yml
+- [df76484](https://github.com/unix280/tempto/commit/df76484c9fcbc8bcaa972134777dfef9396c2d61) Update build.gradle
+- [e89c2fb](https://github.com/unix280/tempto/commit/e89c2fbcc6421c90a0c5a289444257636fba7b65) - Fix signing plugin - Sign before publish in GH action - Fix pom tags
+- [a5e5157](https://github.com/unix280/tempto/commit/a5e5157d2afee03f973cf087b5b620ea9fce8df5) Include sources and javadoc jars (#290)
+- [435c27c](https://github.com/unix280/tempto/commit/435c27ced0f6545d9284e4473158b595af2ccd7a) OSS Automated Fix: Addition of Contributing (#269)
+- [b6fccad](https://github.com/unix280/tempto/commit/b6fccad389e62c460bb0970c29c25b75fb77e886) Remove maven snapshot repository (#289)
+- [fb7aa8f](https://github.com/unix280/tempto/commit/fb7aa8f9de136a10803a1ebd23bbd4946194b93c) upgrade kafka to 3.9.0 and remove zookeeper
+- [7b02b6c](https://github.com/unix280/tempto/commit/7b02b6c5e7049b88ea02c2a07a44424c333e5882) Fix export maven password in release action (#287)
+- [6462ba8](https://github.com/unix280/tempto/commit/6462ba8c1f98f80d4f9667dd028cded19d559728) Add github action to release tempto (#286)
+- [9263c07](https://github.com/unix280/tempto/commit/9263c07875de193d58a8ec2cd106e321994dbf39) Merge pull request #283 from aaneja/gradleUpgrade810_jdk8
+- [e6f70ca](https://github.com/unix280/tempto/commit/e6f70ca7384a92af1fca6bf88702bb280070f715) - Upgrade Gradle to 8.11 (most recent version that works with JDK8) - Update core dependencies to more recent versions - Remove unused NameService/NameServiceDescriptor implementations - Bump version to 1.54-SNAPSHOT
+- [eb9d16c](https://github.com/unix280/tempto/commit/eb9d16caf022c749621c8b0906488a02993783e7) Merge pull request #281 from Dilli-Babu-Godari/CVE_OSS_Jsch
+- [95ca2c5](https://github.com/unix280/tempto/commit/95ca2c5d7f5c8a4a80eaa9c964a5b767df2be48e) Upgrade jsch from 0.1.52 to 0.1.55 to fix CVE-2016-5725
+- [7fea4ee](https://github.com/unix280/tempto/commit/7fea4eed769fbab1b78a6b45b4c3c7254e6f31fc) Merge pull request #282 from Dilli-Babu-Godari/add-ci-gradle
+- [5f3540e](https://github.com/unix280/tempto/commit/5f3540eef6feee8e0d8013ff771bebe3b9d23fdd) Add GitHub Action for Gradle build in Java CI
+
