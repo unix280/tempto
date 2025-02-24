@@ -160,7 +160,7 @@ configure(subprojects - expected_result_generator - tempto_examples) {
             def signingKeyId = project.findProperty("signing.keyId")
             def signingPassword = project.findProperty("signing.password")
             def keyFile = Paths.get(secretKeyRingFilePath)
-            if (Files.exists(keyFile)) {
+            if (keyFile && Files.exists(keyFile)) {
                 def secretKey = new String(Files.readAllBytes(keyFile), "UTF-8")
                 useInMemoryPgpKeys(signingKeyId, secretKey, signingPassword)
             }
@@ -207,7 +207,7 @@ configure(subprojects - expected_result_generator - tempto_examples) {
 
         repositories {
             maven {
-                url = uri('https://m2.unidevel.cn/releases')
+                url = uri('https://oss.sonatype.org/service/local/staging/deploy/maven2/')
                 credentials {
                     username = System.getenv('NEXUS_USERNAME')
                     password = System.getenv('NEXUS_PASSWORD')
