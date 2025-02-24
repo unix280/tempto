@@ -152,6 +152,7 @@ configure(subprojects - expected_result_generator - tempto_examples) {
 
     signing {
         sign publishing.publications
+        useGpgCmd() //Use system provide GPG
     }
 
     // publishing to sonatype
