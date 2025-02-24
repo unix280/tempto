@@ -156,11 +156,11 @@ configure(subprojects - expected_result_generator - tempto_examples) {
     signing {
         def skipSigning = project.findProperty('skipSigning')?.toBoolean() != false
         if (!skipSigning) {
-            def secretKeyRingFilePath = project.findProperty("signing.secretKeyRingFile") as String
+            def secretKeyRingFilePath = project.findProperty("signing.secretKeyRingFile")
             def signingKeyId = project.findProperty("signing.keyId")
             def signingPassword = project.findProperty("signing.password")
-            def keyFile = Paths.get(secretKeyRingFilePath)
-            if (keyFile && Files.exists(keyFile)) {
+            def keyFile = !secretKeyRingFilePath ? null : Paths.get(secretKeyRingFilePath)
+            if (keyFile && Files.exists(keyFile) && !Files.isDirectory(keyFile)) {
                 def secretKey = new String(Files.readAllBytes(keyFile), "UTF-8")
                 useInMemoryPgpKeys(signingKeyId, secretKey, signingPassword)
             }
