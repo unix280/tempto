@@ -201,7 +201,7 @@ configure(subprojects - expected_result_generator - tempto_examples) {
 
         repositories {
             maven {
-                url = uri('https://m2.unidevel.cn/release')
+                url = uri('https://m2.unidevel.cn/releases')
                 credentials {
                     username = System.getenv('NEXUS_USERNAME')
                     password = System.getenv('NEXUS_PASSWORD')
