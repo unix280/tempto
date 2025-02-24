@@ -159,17 +159,10 @@ configure(subprojects - expected_result_generator - tempto_examples) {
             def secretKeyRingFilePath = project.findProperty("signing.secretKeyRingFile") as String
             def signingKeyId = project.findProperty("signing.keyId")
             def signingPassword = project.findProperty("signing.password")
-            if (!secretKeyRingFilePath || secretKeyRingFilePath.isEmpty() ) {
-                logger.error("signing.secretKeyRingFilePath is not set in gradle.properties")
-                throw new GradleException("signing.secretKeyRingFilePath is not set in gradle.properties")
-            }
             def keyFile = Paths.get(secretKeyRingFilePath)
             if (Files.exists(keyFile)) {
                 def secretKey = new String(Files.readAllBytes(keyFile), "UTF-8")
                 useInMemoryPgpKeys(signingKeyId, secretKey, signingPassword)
-            } else {
-                logger.error("GPG secret keyring file is not found: $secretKeyRingFilePath")
-                throw new GradleException("GPG secret keyring file is not found: $secretKeyRingFilePath")
             }
         }
         sign publishing.publications
@@ -214,7 +207,7 @@ configure(subprojects - expected_result_generator - tempto_examples) {
 
         repositories {
             maven {
-                url = uri('https://oss.sonatype.org/service/local/staging/deploy/maven2/')
+                url = uri('https://m2.unidevel.cn/releases')
                 credentials {
                     username = System.getenv('NEXUS_USERNAME')
                     password = System.getenv('NEXUS_PASSWORD')
