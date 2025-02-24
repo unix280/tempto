@@ -110,9 +110,9 @@ jobs:
       - name: Set up gradle.properties for publishing
         run: |
           echo "skipSigning=false" > gradle.properties
-          # echo "signing.keyId=${{ secrets.GPG_KEYID }}" >> gradle.properties
+          echo "signing.keyId=${{ secrets.GPG_KEYID }}" >> gradle.properties
           echo "signing.password=${{ secrets.GPG_PASSPHRASE }}" >> gradle.properties
-          # echo "signing.secretKeyRingFile=${{ github.workspace }}/secret-key.gpg" >> gradle.properties
+          echo "signing.secretKeyRingFile=${{ github.workspace }}/secret-key.gpg" >> gradle.properties
           echo "nexusUsername=${{ secrets.NEXUS_USERNAME }}" >> gradle.properties
           echo "nexusPassword=${{ secrets.NEXUS_PASSWORD }}" >> gradle.properties
 
