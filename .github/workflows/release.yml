@@ -94,18 +94,24 @@ jobs:
         run: |
           git tag -a ${{ env.release_version }} -m "Release ${{ env.release_version }}"
 
-      - name: Set up GPG key
+      - name: Import GPG key
         run: |
           echo "${{ secrets.GPG_SECRET }}" > ${{ github.workspace }}/secret-key.gpg
           chmod 600 ${{ github.workspace }}/secret-key.gpg
           file ${{ github.workspace }}/secret-key.gpg
+          gpg --import --batch ${{ github.workspace }}/secret-key.gpg
+          rm -f ${{ github.workspace }}/secret-key.gpg
+          gpg --list-secret-keys
+          echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
+        env:
+          GPG_TTY: $(tty)
 
       - name: Set up gradle.properties for publishing
         run: |
           echo "skipSigning=false" > gradle.properties
-          echo "signing.keyId=${{ secrets.GPG_KEYID }}" >> gradle.properties
+          # echo "signing.keyId=${{ secrets.GPG_KEYID }}" >> gradle.properties
           echo "signing.password=${{ secrets.GPG_PASSPHRASE }}" >> gradle.properties
-          echo "signing.secretKeyRingFile=${{ github.workspace }}/secret-key.gpg" >> gradle.properties
+          # echo "signing.secretKeyRingFile=${{ github.workspace }}/secret-key.gpg" >> gradle.properties
           echo "nexusUsername=${{ secrets.NEXUS_USERNAME }}" >> gradle.properties
           echo "nexusPassword=${{ secrets.NEXUS_PASSWORD }}" >> gradle.properties
 
