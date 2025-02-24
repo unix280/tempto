@@ -98,6 +98,7 @@ jobs:
         run: |
           echo "${{ secrets.GPG_SECRET }}" > ${{ github.workspace }}/secret-key.gpg
           chmod 600 ${{ github.workspace }}/secret-key.gpg
+          file ${{ github.workspace }}/secret-key.gpg
 
       - name: Set up gradle.properties for publishing
         run: |
