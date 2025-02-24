@@ -11,6 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -115,7 +116,7 @@ ext.tempto_runner = project(':tempto-runner')
 ext.tempto_ldap = project(':tempto-ldap')
 ext.tempto_kafka = project(':tempto-kafka')
 ext.expected_result_generator = project(':expected-result-generator')
-ext.tempto_version = '1.55-SNAPSHOT'
+ext.tempto_version = '1.54-SNAPSHOT'
 ext.tempto_group = "io.prestodb.tempto"
 
 ext.nexusUsername = 'setup_nexusUsername_in_gradle.properties'
@@ -152,13 +153,25 @@ configure(subprojects - expected_result_generator - tempto_examples) {
         withSourcesJar()
     }
 
-    def secretKeyRingFilePath = project.findProperty("signing.secretKeyRingFile") as String
-    def secretKey = new String(Files.readAllBytes(Paths.get(secretKeyRingFilePath)), "UTF-8")
-    def signingKeyId = project.findProperty("signing.keyId")
-    def signingPassword = project.findProperty("signing.password")
-
     signing {
-        useInMemoryPgpKeys(signingKeyId, secretKey, signingPassword)
+        def skipSigning = project.findProperty('skipSigning')?.toBoolean() != false
+        if (!skipSigning) {
+            def secretKeyRingFilePath = project.findProperty("signing.secretKeyRingFile") as String
+            def signingKeyId = project.findProperty("signing.keyId")
+            def signingPassword = project.findProperty("signing.password")
+            if (!secretKeyRingFilePath || secretKeyRingFilePath.isEmpty() ) {
+                logger.error("signing.secretKeyRingFilePath is not set in gradle.properties")
+                throw new GradleException("signing.secretKeyRingFilePath is not set in gradle.properties")
+            }
+            def keyFile = Paths.get(secretKeyRingFilePath)
+            if (Files.exists(keyFile)) {
+                def secretKey = new String(Files.readAllBytes(keyFile), "UTF-8")
+                useInMemoryPgpKeys(signingKeyId, secretKey, signingPassword)
+            } else {
+                logger.error("GPG secret keyring file is not found: $secretKeyRingFilePath")
+                throw new GradleException("GPG secret keyring file is not found: $secretKeyRingFilePath")
+            }
+        }
         sign publishing.publications
     }
 
@@ -201,7 +214,7 @@ configure(subprojects - expected_result_generator - tempto_examples) {
 
         repositories {
             maven {
-                url = uri('https://m2.unidevel.cn/releases')
+                url = uri('https://oss.sonatype.org/service/local/staging/deploy/maven2/')
                 credentials {
                     username = System.getenv('NEXUS_USERNAME')
                     password = System.getenv('NEXUS_PASSWORD')
